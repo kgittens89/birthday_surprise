@@ -86,7 +86,7 @@
         // Carousel functionality
         let autoCarouselInterval = null;
         let currentSlideIndex = 0;
-        const totalSlides = 4;
+        const totalSlides = 5;
 
         function updateCarousel() {
             const track = document.getElementById('carouselTrack');
