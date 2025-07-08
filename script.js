@@ -17,18 +17,35 @@
 
         // Show surprise message, music, and photo gallery all at once
         function showSurprise() {
-            const message = document.getElementById('surpriseMessage');
+        const message = document.getElementById('surpriseMessage');
+        const audioSection = document.getElementById('audioSection');
+        const gallery = document.getElementById('photoGallery');
+        const audio = document.getElementById('birthdayMusic');
+    
+        // Show all elements
+        message.classList.add('show');
+        audioSection.classList.add('show');
+    
+        // Auto-play music (with error handling for browser policies)
+        setTimeout(() => {
+        audio.play().catch(error => {
+            console.log('Auto-play prevented by browser policy:', error);
+            // Show a friendly message if autoplay is blocked
             const audioSection = document.getElementById('audioSection');
-            const gallery = document.getElementById('photoGallery');
-            
-            // Show all elements
-            message.classList.add('show');
-            audioSection.classList.add('show');
-            
-            // Open photo gallery with a slight delay for dramatic effect
-            setTimeout(() => {
-                gallery.classList.add('show');
-            }, 500);
+            const playMessage = document.createElement('p');
+            playMessage.style.color = '#feca57';
+            playMessage.style.fontSize = '0.9rem';
+            playMessage.style.marginTop = '10px';
+            playMessage.textContent = '🎵 Click the play button to start the music! 🎵';
+            audioSection.appendChild(playMessage);
+        });
+    }, 200);
+    
+    // Open photo gallery and start auto-carousel
+    setTimeout(() => {
+        gallery.classList.add('show');
+        startAutoCarousel();
+    }, 800);
             
             // Create multiple confetti bursts
             createConfetti();
@@ -45,7 +62,29 @@
             }, 150);
         }
 
+
+        // Auto-carousel functionality
+        function startAutoCarousel() {
+        // Clear any existing interval
+        if (autoCarouselInterval) {
+            clearInterval(autoCarouselInterval);
+        }
+    
+        // Start new auto-carousel (advance every 3 seconds)
+        autoCarouselInterval = setInterval(() => {
+            nextSlide();
+        }, 3000);
+    }
+
+    function stopAutoCarousel() {
+        if (autoCarouselInterval) {
+            clearInterval(autoCarouselInterval);
+            autoCarouselInterval = null;
+        }
+    }
+
         // Carousel functionality
+        let autoCarouselInterval = null;
         let currentSlideIndex = 0;
         const totalSlides = 4;
 
@@ -79,16 +118,25 @@
         function goToSlide(index) {
             currentSlideIndex = index;
             updateCarousel();
+            // Reset auto-carousel when user manually navigates
+            if (autoCarouselInterval) {
+                clearInterval(autoCarouselInterval);
+                startAutoCarousel();
+            }
         }
 
         // Close photo gallery
         function closeGallery() {
             const gallery = document.getElementById('photoGallery');
             gallery.classList.remove('show');
+    
+            // Stop auto-carousel when gallery is closed
+            stopAutoCarousel();
+    
             // Reset carousel to first slide when closing
             currentSlideIndex = 0;
             updateCarousel();
-        }
+}
 
         // Show musical notes animation
         function showMusicalNotes() {
@@ -110,3 +158,24 @@
 
         // Create periodic confetti
         setInterval(createConfetti, 10000);
+
+        // Add event listeners for manual navigation (these will reset auto-carousel)
+document.addEventListener('DOMContentLoaded', () => {
+    const prevBtn = document.querySelector('.carousel-nav.prev');
+    const nextBtn = document.querySelector('.carousel-nav.next');
+    
+    prevBtn.addEventListener('click', () => {
+        if (autoCarouselInterval) {
+            clearInterval(autoCarouselInterval);
+            startAutoCarousel();
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (autoCarouselInterval) {
+            clearInterval(autoCarouselInterval);
+            startAutoCarousel();
+        }
+    });
+});
+
