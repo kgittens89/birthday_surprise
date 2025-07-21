@@ -3,77 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Happy Birthday! 🎉</title>
+    <title>🎉 SURPRISE! 🎉</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">🎉 HAPPY BIRTHDAY UNCLE ERIC! 🎉</h1>
-        <p class="subtitle">Hope your day is special and full of love!</p>
+        <h1 class="surprise-header">🎉 SURPRISE! 🎉</h1>
         
-        <div class="cake-container">
-            <div class="cake">
-                <div class="candle"><div class="flame"></div></div>
-                <div class="candle"><div class="flame"></div></div>
-                <div class="candle"><div class="flame"></div></div>
-                <div class="candle"><div class="flame"></div></div>
-            </div>
+        <div class="age-display">20!</div>
+        
+        <div class="funny-message">
+            <p>Congratulations! You've officially survived 2 decades on this planet! 🌍</p>
+            <p>You're now old enough to know better, but still young enough to do it anyway! 😄</p>
         </div>
-        
-        <button class="surprise-btn" onclick="showSurprise()">🎁 Click for a Surprise! 🎁</button>
-        
-        <div class="audio-section" id="audioSection">
-        <h3>🎵 Happy Birthday Music! 🎵</h3>
-            <audio id="birthdayMusic" controls>
-                <source src="assets/happy_birthday.mp3" type="audio/mpeg">
-            </audio>
+
+        <div class="interactive-section">
+            <button class="fun-button" onclick="tellJoke()">Tell me a joke!</button>
+            <button class="fun-button" onclick="giveAdvice()">Give me "wisdom"</button>
+            <button class="fun-button" onclick="startParty()">PARTY TIME!</button>
+            <button class="fun-button" onclick="showLove()">Show some love ❤️</button>
         </div>
-        
-        <div class="message" id="surpriseMessage">
-            <h2>🌟 Birthday Wishes! 🌟</h2>
-            <p>May your birthday be filled with sunshine and smiles, laughter and love!</p>
-            <p>Here's to another year of vibes and getting this money 💸 </p>
-            <p>You deserve all the happiness in the world today and always! 🎂✨</p>
-            <p> Love you Unc 💜</p>
+
+        <div id="joke-display" class="joke-box hidden">
+            <p id="joke-text"></p>
+        </div>
+
+        <div class="wisdom-section">
+            <h2>🎓 Official 20-Year-Old Wisdom 🎓</h2>
+            <p id="wisdom-text">Welcome to your twenties! You're now qualified to:</p>
+            <ul id="wisdom-list" style="text-align: left; margin-top: 15px;">
+                <li>Pretend you know what you're doing</li>
+                <li>Eat cereal for dinner and call it "adulting"</li>
+                <li>Complain about being old while still asking for money</li>
+                <li>Give life advice based on your vast 20 years of experience</li>
+            </ul>
+        </div>
+
+        <div class="celebration-counter">
+            🎂 Birthday Celebrations: <span id="party-count">0</span> 🎂
         </div>
     </div>
-
-    <!-- Floating balloons -->
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-
-    <!-- Photo Gallery Modal -->
-    <div class="photo-gallery" id="photoGallery">
-        <button class="close-gallery" onclick="closeGallery()">×</button>
-        <div class="gallery-container">
-            <div class="carousel-counter">
-                <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
-            </div>
-            <div class="carousel-track" id="carouselTrack">
-                <img src="assets/IMG_4914.HEIC" alt="Birthday Memory" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                <img src="assets/IMG_5390.heic" alt="Birthday Memory" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                <img src="assets/IMG_6417.HEIC" alt="Birthday Memory" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                <img src="assets/IMG_6425.HEIC" alt="Birthday Memory" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-                <img src="assets/IMG_8034.HEIC" alt="Birthday Memory" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-            </div>
-            <button class="carousel-nav prev" onclick="prevSlide()">‹</button>
-            <button class="carousel-nav next" onclick="nextSlide()">›</button>
-            <div class="carousel-dots">
-                <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-                <div class="carousel-dot" onclick="goToSlide(1)"></div>
-                <div class="carousel-dot" onclick="goToSlide(2)"></div>
-                <div class="carousel-dot" onclick="goToSlide(3)"></div>
-                <div class="carousel-dot" onclick="goToSlide(4)"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Musical notes for animation -->
-    <div class="music-note" id="note1" style="left: 20%; top: 30%;">♪</div>
-    <div class="music-note" id="note2" style="left: 80%; top: 40%;">♫</div>
-    <div class="music-note" id="note3" style="left: 60%; top: 20%;">♪</div>
 
     <script src="./script.js"></script>
     </script>
